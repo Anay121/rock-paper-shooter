@@ -14,6 +14,9 @@ let lives = 5;
 let score = 0;
 let gameOver = 0;
 let time = 1500;
+let rocks = 5;
+let papers = 5;
+let scissors = 5;
 
 function preload() {
     rockImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/tryRock.png')
@@ -59,14 +62,17 @@ function setup() {
             if (e.code == "ArrowRight") {
                 movement = 'right';
             }
-            if (e.key == 'q') {
+            if (e.key == 'q' && rocks > 0) {
                 makeProjectile(player.body.position.x, player.body.position.y - 25, 'rock', 0, -6);
+                rocks--;
             }
-            if (e.key == 'w') {
+            if (e.key == 'w' && papers > 0) {
                 makeProjectile(player.body.position.x, player.body.position.y - 25, 'paper', 0, -6);
+                papers--;
             }
-            if (e.key == 'e') {
+            if (e.key == 'e' && scissors > 0) {
                 makeProjectile(player.body.position.x, player.body.position.y - 25, 'scissors', 0, -6);
+                scissors--;
             }
         } else {
             if (e.key == "r") {
@@ -74,6 +80,9 @@ function setup() {
                 score = 0;
                 gameOver = 0;
                 time = 1500;
+                papers = 5;
+                rocks = 5;
+                scissors = 5;
             }
         }
     });
@@ -110,6 +119,8 @@ function setup() {
             World.remove(world, pairs[0].bodyA);
             World.remove(world, pairs[0].bodyB);
             score++;
+            rocks++;
+            papers++;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyA.id && elem.body.id != pairs[0].bodyB.id);
             });
@@ -118,6 +129,8 @@ function setup() {
             World.remove(world, pairs[0].bodyA);
             World.remove(world, pairs[0].bodyB);
             score++;
+            papers++;
+            scissors++;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyA.id && elem.body.id != pairs[0].bodyB.id);
             });
@@ -126,6 +139,8 @@ function setup() {
             World.remove(world, pairs[0].bodyA);
             World.remove(world, pairs[0].bodyB);
             score++;
+            scissors++;
+            rocks++;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyA.id && elem.body.id != pairs[0].bodyB.id);
             });
@@ -133,18 +148,21 @@ function setup() {
         // i shot a rock at a rock
         if (pairs[0].bodyA.label == 'rock' && pairs[0].bodyB.label == 'rock') {
             World.remove(world, pairs[0].bodyB);
+            rocks++;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyB.id);
             });
         }
         if (pairs[0].bodyA.label == 'scissors' && pairs[0].bodyB.label == 'scissors') {
             World.remove(world, pairs[0].bodyB);
+            scissors++;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyB.id);
             });
         }
         if (pairs[0].bodyA.label == 'paper' && pairs[0].bodyB.label == 'paper') {
             World.remove(world, pairs[0].bodyB);
+            papers++;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyB.id);
             });
@@ -183,11 +201,15 @@ function draw() {
     textSize(25);
     text('Score : ' + score, 100, 100);
     text('Lives : ' + lives, 100, 150);
+    text('Rocks : ' + rocks, 100, 400);
+    text('Papers : ' + papers, 100, 450);
+    text('Scissors : ' + scissors, 100, 500);
     if (gameOver) {
         text('Game Over ', window.innerWidth / 2 - 75, window.innerHeight / 2);
         textSize(20);
         text('Press r to restart', window.innerWidth / 2 - 80, window.innerHeight / 2 + 35);
     }
+
     noStroke();
     incomingStuff.forEach((elem) => {
         elem.show();
