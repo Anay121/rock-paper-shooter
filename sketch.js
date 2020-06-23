@@ -9,6 +9,11 @@ let player;
 let incomingStuff = [];
 let spawner;
 let movement = 'none';
+
+function preload(){
+    img = loadImage('assets/rock2.jpg')
+}
+
 function setup(){
     let h = window.innerHeight;
     let w = 0.4*window.innerWidth;
