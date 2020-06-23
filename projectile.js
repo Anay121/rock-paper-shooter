@@ -4,6 +4,7 @@ class Projectile {
         let options = {
             label: playerLabel,
             frictionAir: 0,
+            isSensor: true,
         }
         this.body = Bodies.circle(x, y, r, options);
         this.r = r;
@@ -22,6 +23,9 @@ class Projectile {
     show() {
         let pos = this.body.position;
         let angle = this.body.angle;
+        if (this.body.position.y > window.windowHeight) {
+            this.removeBody();
+        }
         push();
         translate(pos.x, pos.y);
         rotate(angle);
