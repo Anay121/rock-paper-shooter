@@ -16,9 +16,10 @@ let gameOver = 0;
 let time = 1500;
 
 function preload() {
-    rockImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/tryRock.png')
-    paperImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/tryPaper.png')
-    scissorImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/newScissors.png')
+    rockImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/VTGRock.png')
+    paperImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/VTGPaper.png')
+    scissorImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/VTGScissors.png')
+    heartImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/lives.png')
 }
 
 function setup() {
@@ -182,7 +183,12 @@ function draw() {
     player.show();
     textSize(25);
     text('Score : ' + score, 100, 100);
-    text('Lives : ' + lives, 100, 150);
+    // text('Lives : ' + lives, 100, 150);
+    text('Lives : ', 100, 150);
+    // imageMode(TOP);
+    for(let i=0; i < lives; i++){
+        image(heartImg, 180+i*20, 135, 20, 20)
+    }
     if (gameOver) {
         text('Game Over ', window.innerWidth / 2 - 75, window.innerHeight / 2);
         textSize(20);
