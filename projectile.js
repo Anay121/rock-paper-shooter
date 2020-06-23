@@ -1,13 +1,15 @@
 class Projectile {
-    constructor(x, y, r, playerLabel, velocity) {
+    constructor(x, y, r, playerLabel, velocity, bodyImg) {
 
         let options = {
             label: playerLabel,
             frictionAir: 0,
             isSensor: true,
         }
-        this.body = Bodies.circle(x, y, r, options);
+        // this.body = Bodies.circle(x, y, r, options);
+        this.body = Bodies.rectangle(x, y, r, r, options);
         this.r = r;
+        this.image = bodyImg;
         if (playerLabel == 'rock') {
             this.color = 'red';
         } else if (playerLabel == 'scissors') {
@@ -31,9 +33,23 @@ class Projectile {
         rotate(angle);
         rectMode(CENTER);
         strokeWeight(1);
-        stroke(255);
-        fill(this.color);
-        circle(0, 0, this.r * 2);
+        // stroke(255);
+        fill(0);
+        rect(0, 0, this.r, this.r)
+        imageMode(CENTER);
+        if(this.body.label=='rock'){
+            image(rockImg, 0, 0, this.r, this.r);
+        }
+        else if(this.body.label=='paper'){
+            image(paperImg, 0, 0, this.r, this.r);
+        }
+        else if(this.body.label=='scissors'){
+            image(scissorImg, 0, 0, this.r, this.r);
+        }
+        
+        
+        // fill(this.color);
+        // circle(0, 0, this.r * 2);
         pop();
     }
 

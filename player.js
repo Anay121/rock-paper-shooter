@@ -3,7 +3,8 @@ class Player {
         let options = {
             label: playerLabel
         }
-        this.body = Bodies.circle(x, y, r, options);
+        // this.body = Bodies.circle(x, y, r, options);
+        this.body = Bodies.rectangle(x, y, r, r, options);
         this.r = r;
         this.playerColor = 'green';
         World.add(world, this.body);
@@ -15,13 +16,15 @@ class Player {
         push();
         translate(pos.x, pos.y);
         rotate(angle);
-        rectMode(CENTER);
         strokeWeight(1);
         stroke(255);
-        // fill(this.playerColor);
-        var shape = circle(0, 0, this.r * 2);
+        rectMode(CENTER);
+        rect(0, 0, this.r, this.r)
+        imageMode(CENTER);
+        image(rockImg, 0, 0, this.r, this.r);
+        // circle(0, 0, this.r * 2);
         // console.log(shape);
-        img.mask(shape);
+        // img.mask(shape);
         pop();
     }
 

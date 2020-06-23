@@ -14,7 +14,9 @@ let lives = 5;
 let score = 0;
 
 function preload() {
-    img = loadImage('assets/rock2.jpg')
+    rockImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/newRock.png')
+    paperImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/newPaper.png')
+    scissorImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/newScissors.png')
 }
 
 function setup() {
@@ -33,9 +35,9 @@ function setup() {
         x: 0,
         y: 0
     };
-    player = new Player(w / 2, h - 20, 10, 'player'); // for now just a circle body
+    player = new Player(w / 2, h - 20, 40, 'player'); // for now just a circle body
     spawner = setInterval(() => {
-        makeProjectile(random(400, window.innerWidth - 400), 20, random(bulletLabel), 0, 4)
+        makeProjectile(random(400, window.innerWidth - 400), 20, random(bulletLabel), 0, 4, rockImg)
     }, 3000);
     document.body.addEventListener("keydown", function (e) {
         if (e.code == "ArrowLeft") {
@@ -167,7 +169,7 @@ function makeProjectile(x, y, bulletLabel, xs, ys) {
         x: x,
         y: y
     };
-    proj = new Projectile(pos.x, pos.y, 10, bulletLabel, {
+    proj = new Projectile(pos.x, pos.y, 40, bulletLabel, {
         x: xs,
         y: ys
     });
