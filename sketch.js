@@ -10,6 +10,8 @@ let incomingStuff = [];
 let spawner;
 let movement = 'none';
 let shoot = 'none';
+let lives = 5;
+let score = 0;
 
 function preload(){
     rockImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/newRock.png')
@@ -35,7 +37,6 @@ function setup() {
         makeProjectile(random(400, window.innerWidth - 400), 20, random(bulletLabel), 0, 4, rockImg)
     }, 3000);
     document.body.addEventListener("keydown", function (e) {
-        console.log(e);
         if (e.code == "ArrowLeft") {
             movement = 'left';
         }
@@ -53,7 +54,6 @@ function setup() {
         }
     });
     document.body.addEventListener("keyup", function (e) {
-        console.log(e.key);
         if (e.code == "ArrowLeft" || e.code == 'ArrowRight') {
             movement = 'none';
         }
@@ -61,12 +61,12 @@ function setup() {
     Events.on(engine, 'beforeUpdate', function () {
         if (movement == 'left') {
             Body.setVelocity(player.body, {
-                x: -4,
+                x: -6,
                 y: 0
             })
         } else if (movement == 'right') {
             Body.setVelocity(player.body, {
-                x: 4,
+                x: 6,
                 y: 0
             })
         } else if (movement == 'none') {
@@ -84,6 +84,7 @@ function setup() {
         if (pairs[0].bodyA.label == 'rock' && pairs[0].bodyB.label == 'paper') {
             World.remove(world, pairs[0].bodyA);
             World.remove(world, pairs[0].bodyB);
+            score++;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyA.id && elem.body.id != pairs[0].bodyB.id);
             });
@@ -91,6 +92,7 @@ function setup() {
         if (pairs[0].bodyA.label == 'paper' && pairs[0].bodyB.label == 'scissors') {
             World.remove(world, pairs[0].bodyA);
             World.remove(world, pairs[0].bodyB);
+            score++;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyA.id && elem.body.id != pairs[0].bodyB.id);
             });
@@ -98,6 +100,7 @@ function setup() {
         if (pairs[0].bodyA.label == 'scissors' && pairs[0].bodyB.label == 'rock') {
             World.remove(world, pairs[0].bodyA);
             World.remove(world, pairs[0].bodyB);
+            score++;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyA.id && elem.body.id != pairs[0].bodyB.id);
             });
@@ -146,9 +149,16 @@ function setup() {
 
 function draw() {
     Engine.update(engine, 1000 / 60);
-    background(100);
+    background(0);
+    stroke(255);
+    fill(255);
+    line(375, 0, 375, window.innerHeight);
+    line(window.innerWidth - 375, 0, window.innerWidth - 375, window.innerHeight);
     player.show();
+    textSize(25);
+    text('Score : ' + score, 100, 100);
     incomingStuff.forEach((elem) => elem.show());
+    incomingStuff = incomingStuff.filter((elem) => elem.body.position.y < window.windowHeight && elem.body.position.y > -20);
 }
 
 function makeProjectile(x, y, bulletLabel, xs, ys) {
@@ -161,5 +171,4 @@ function makeProjectile(x, y, bulletLabel, xs, ys) {
         y: ys
     });
     incomingStuff.push(proj);
-    console.log(incomingStuff);
 }
