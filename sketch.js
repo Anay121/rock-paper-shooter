@@ -73,6 +73,7 @@ function setup() {
                 lives = 5;
                 score = 0;
                 gameOver = 0;
+                time = 1500;
             }
         }
     });
@@ -82,6 +83,7 @@ function setup() {
         }
     });
     Events.on(engine, 'beforeUpdate', function () {
+
         if (movement == 'left') {
             Body.setVelocity(player.body, {
                 x: -6,
