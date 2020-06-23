@@ -3,7 +3,8 @@ class Player {
         let options = {
             label: playerLabel
         }
-        this.body = Bodies.circle(x, y, r, options);
+        // this.body = Bodies.circle(x, y, r, options);
+        this.body = Bodies.rectangle(x, y, r, r, options);
         this.r = r;
         this.playerColor = 'green';
         World.add(world, this.body);
@@ -17,8 +18,10 @@ class Player {
         rotate(angle);
         strokeWeight(1);
         stroke(255);
+        rectMode(CENTER);
+        rect(0, 0, this.r, this.r)
         imageMode(CENTER);
-        image(rockImg, 0, 0, this.r*2, this.r*2);
+        image(rockImg, 0, 0, this.r, this.r);
         // circle(0, 0, this.r * 2);
         // console.log(shape);
         // img.mask(shape);

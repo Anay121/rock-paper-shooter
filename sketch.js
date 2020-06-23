@@ -12,7 +12,7 @@ let movement = 'none';
 let shoot = 'none';
 
 function preload(){
-    rockImg = loadImage('https://cors-anywhere.herokuapp.com/https://png.pngtree.com/png-clipart/20190520/original/pngtree-stone-rock-stone-small-rockery-png-image_3813140.jpg')
+    rockImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/newRock.png')
 }
 
 function setup() {
@@ -30,9 +30,9 @@ function setup() {
         x: 0,
         y: 0
     };
-    player = new Player(w / 2, h - 20, 10, 'player'); // for now just a circle body
+    player = new Player(w / 2, h - 20, 40, 'player'); // for now just a circle body
     spawner = setInterval(() => {
-        makeProjectile(random(400, window.innerWidth - 400), 20, random(bulletLabel), 0, 4)
+        makeProjectile(random(400, window.innerWidth - 400), 20, random(bulletLabel), 0, 4, rockImg)
     }, 3000);
     document.body.addEventListener("keydown", function (e) {
         console.log(e);
@@ -43,13 +43,13 @@ function setup() {
             movement = 'right';
         }
         if (e.key == 'q') {
-            makeProjectile(player.body.position.x, player.body.position.y - 25, 'rock', 0, -4);
+            makeProjectile(player.body.position.x, player.body.position.y - 25, 'rock', 0, -4, rockImg);
         }
         if (e.key == 'w') {
-            makeProjectile(player.body.position.x, player.body.position.y - 25, 'paper', 0, -4);
+            makeProjectile(player.body.position.x, player.body.position.y - 25, 'paper', 0, -4, rockImg);
         }
         if (e.key == 'e') {
-            makeProjectile(player.body.position.x, player.body.position.y - 25, 'scissors', 0, -4);
+            makeProjectile(player.body.position.x, player.body.position.y - 25, 'scissors', 0, -4, rockImg);
         }
     });
     document.body.addEventListener("keyup", function (e) {
@@ -156,7 +156,7 @@ function makeProjectile(x, y, bulletLabel, xs, ys) {
         x: x,
         y: y
     };
-    proj = new Projectile(pos.x, pos.y, 10, bulletLabel, {
+    proj = new Projectile(pos.x, pos.y, 40, bulletLabel, {
         x: xs,
         y: ys
     });
