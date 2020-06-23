@@ -11,7 +11,7 @@ let spawner;
 let movement = 'none';
 
 function preload(){
-    img = loadImage('assets/rock2.jpg')
+    rockImg = loadImage('https://cors-anywhere.herokuapp.com/https://png.pngtree.com/png-clipart/20190520/original/pngtree-stone-rock-stone-small-rockery-png-image_3813140.jpg')
 }
 
 function setup(){

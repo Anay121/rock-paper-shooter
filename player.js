@@ -15,13 +15,13 @@ class Player {
         push();
         translate(pos.x, pos.y);
         rotate(angle);
-        rectMode(CENTER);
         strokeWeight(1);
         stroke(255);
-        // fill(this.playerColor);
-        shape = circle(0, 0, this.r * 2);
-        console.log(shape);
-        img.mask(shape);
+        imageMode(CENTER);
+        image(rockImg, 0, 0, this.r*2, this.r*2);
+        // circle(0, 0, this.r * 2);
+        // console.log(shape);
+        // img.mask(shape);
         pop();
     }
 
