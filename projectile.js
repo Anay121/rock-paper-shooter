@@ -17,7 +17,7 @@ class Projectile {
         }
 
         World.add(world, this.body);
-        Body.setVelocity(this.body, velocity)
+        Body.setVelocity(this.body, velocity);
     }
 
     show() {

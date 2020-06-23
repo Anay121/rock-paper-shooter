@@ -18,6 +18,7 @@ function preload() {
 }
 
 function setup() {
+    frameRate(60);
     let h = window.innerHeight;
     let w = window.innerWidth;
     canvas = createCanvas(w, h);
@@ -44,13 +45,13 @@ function setup() {
             movement = 'right';
         }
         if (e.key == 'q') {
-            makeProjectile(player.body.position.x, player.body.position.y - 25, 'rock', 0, -4);
+            makeProjectile(player.body.position.x, player.body.position.y - 25, 'rock', 0, -6);
         }
         if (e.key == 'w') {
-            makeProjectile(player.body.position.x, player.body.position.y - 25, 'paper', 0, -4);
+            makeProjectile(player.body.position.x, player.body.position.y - 25, 'paper', 0, -6);
         }
         if (e.key == 'e') {
-            makeProjectile(player.body.position.x, player.body.position.y - 25, 'scissors', 0, -4);
+            makeProjectile(player.body.position.x, player.body.position.y - 25, 'scissors', 0, -6);
         }
     });
     document.body.addEventListener("keyup", function (e) {
