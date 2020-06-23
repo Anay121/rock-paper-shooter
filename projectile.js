@@ -1,8 +1,9 @@
 class Projectile {
     constructor(x, y, r, playerLabel, velocity) {
+
         let options = {
             label: playerLabel,
-            frictionAir: 0
+            frictionAir: 0,
         }
         this.body = Bodies.circle(x, y, r, options);
         this.r = r;

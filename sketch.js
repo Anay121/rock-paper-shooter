@@ -77,11 +77,10 @@ function setup() {
         }
     });
     Events.on(engine, 'collisionStart', function (event) {
-        // console.log("Evento: ", event)
+
         var pairs = event.pairs;
-        // console.log("Pair no visible: ", pairs)
-        // console.log("Pair visible: ", pairs[0]);
-        // console.log("colision between " + pairs[0].bodyA.label + " - " + pairs[0].bodyB.label);
+
+        // i shot a rock at paper
         if (pairs[0].bodyA.label == 'rock' && pairs[0].bodyB.label == 'paper') {
             World.remove(world, pairs[0].bodyA);
             World.remove(world, pairs[0].bodyB);
@@ -101,6 +100,44 @@ function setup() {
             World.remove(world, pairs[0].bodyB);
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyA.id && elem.body.id != pairs[0].bodyB.id);
+            });
+        }
+        // i shot a rock at a rock
+        if (pairs[0].bodyA.label == 'rock' && pairs[0].bodyB.label == 'rock') {
+            World.remove(world, pairs[0].bodyB);
+            incomingStuff = incomingStuff.filter((elem) => {
+                return (elem.body.id != pairs[0].bodyB.id);
+            });
+        }
+        if (pairs[0].bodyA.label == 'scissors' && pairs[0].bodyB.label == 'scissors') {
+            World.remove(world, pairs[0].bodyB);
+            incomingStuff = incomingStuff.filter((elem) => {
+                return (elem.body.id != pairs[0].bodyB.id);
+            });
+        }
+        if (pairs[0].bodyA.label == 'paper' && pairs[0].bodyB.label == 'paper') {
+            World.remove(world, pairs[0].bodyB);
+            incomingStuff = incomingStuff.filter((elem) => {
+                return (elem.body.id != pairs[0].bodyB.id);
+            });
+        }
+        // i shot a paper at rock
+        if (pairs[0].bodyA.label == 'paper' && pairs[0].bodyB.label == 'rock') {
+            World.remove(world, pairs[0].bodyB);
+            incomingStuff = incomingStuff.filter((elem) => {
+                return (elem.body.id != pairs[0].bodyB.id);
+            });
+        }
+        if (pairs[0].bodyA.label == 'scissors' && pairs[0].bodyB.label == 'paper') {
+            World.remove(world, pairs[0].bodyB);
+            incomingStuff = incomingStuff.filter((elem) => {
+                return (elem.body.id != pairs[0].bodyB.id);
+            });
+        }
+        if (pairs[0].bodyA.label == 'rock' && pairs[0].bodyB.label == 'scissors') {
+            World.remove(world, pairs[0].bodyB);
+            incomingStuff = incomingStuff.filter((elem) => {
+                return (elem.body.id != pairs[0].bodyB.id);
             });
         }
 
