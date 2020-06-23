@@ -19,8 +19,8 @@ class Player {
         strokeWeight(1);
         stroke(255);
         // fill(this.playerColor);
-        shape = circle(0, 0, this.r * 2);
-        console.log(shape);
+        var shape = circle(0, 0, this.r * 2);
+        // console.log(shape);
         img.mask(shape);
         pop();
     }
