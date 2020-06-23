@@ -148,21 +148,18 @@ function setup() {
         // i shot a rock at a rock
         if (pairs[0].bodyA.label == 'rock' && pairs[0].bodyB.label == 'rock') {
             World.remove(world, pairs[0].bodyB);
-            rocks++;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyB.id);
             });
         }
         if (pairs[0].bodyA.label == 'scissors' && pairs[0].bodyB.label == 'scissors') {
             World.remove(world, pairs[0].bodyB);
-            scissors++;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyB.id);
             });
         }
         if (pairs[0].bodyA.label == 'paper' && pairs[0].bodyB.label == 'paper') {
             World.remove(world, pairs[0].bodyB);
-            papers++;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyB.id);
             });
