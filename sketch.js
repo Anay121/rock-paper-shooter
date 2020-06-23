@@ -13,6 +13,7 @@ let shoot = 'none';
 let lives = 5;
 let score = 0;
 let gameOver = 0;
+let time = 1300;
 
 function preload() {
     rockImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/newRock.png')
@@ -37,9 +38,19 @@ function setup() {
         y: 0
     };
     player = new Player(w / 2, h - 20, 40, 'player'); // for now just a circle body
-    spawner = setInterval(() => {
-        makeProjectile(random(400, window.innerWidth - 400), 20, random(bulletLabel), 0, 4, rockImg)
-    }, 3000);
+    // spawner = setInterval(() => {
+    //     makeProjectile(random(400, window.innerWidth - 400), 20, random(bulletLabel), 0, 4, rockImg)
+    // }, 3000);
+
+    var spawner = function () {
+        makeProjectile(random(400, window.innerWidth - 400), 20, random(bulletLabel), 0, 4, rockImg);
+        if (score % 5 == 0) {
+            time -= 100;
+        }
+        setTimeout(spawner, time);
+    }
+    setTimeout(spawner, time);
+
     document.body.addEventListener("keydown", function (e) {
         if (!gameOver) {
             if (e.code == "ArrowLeft") {
@@ -180,7 +191,8 @@ function draw() {
         elem.show();
         if (elem.body.position.y > window.windowHeight) {
             lives--;
-            if (lives == 0) {
+            if (lives <= 0) {
+                lives = 0;
                 gameOver = 1;
             }
         }
