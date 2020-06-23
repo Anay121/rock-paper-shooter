@@ -14,7 +14,10 @@ let lives = 5;
 let score = 0;
 let gameOver = 0;
 let time = 1500;
-
+let rocks = 5;
+let papers = 5;
+let scissors = 5;
+let textLength;
 function preload() {
     rockImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/VTGRock.png')
     paperImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/VTGPaper.png')
@@ -60,14 +63,17 @@ function setup() {
             if (e.code == "ArrowRight") {
                 movement = 'right';
             }
-            if (e.key == 'q') {
+            if (e.key == 'q' && rocks > 0) {
                 makeProjectile(player.body.position.x, player.body.position.y - 25, 'rock', 0, -6);
+                rocks--;
             }
-            if (e.key == 'w') {
+            if (e.key == 'w' && papers > 0) {
                 makeProjectile(player.body.position.x, player.body.position.y - 25, 'paper', 0, -6);
+                papers--;
             }
-            if (e.key == 'e') {
+            if (e.key == 'e' && scissors > 0) {
                 makeProjectile(player.body.position.x, player.body.position.y - 25, 'scissors', 0, -6);
+                scissors--;
             }
         } else {
             if (e.key == "r") {
@@ -75,6 +81,9 @@ function setup() {
                 score = 0;
                 gameOver = 0;
                 time = 1500;
+                papers = 5;
+                rocks = 5;
+                scissors = 5;
             }
         }
     });
@@ -111,6 +120,8 @@ function setup() {
             World.remove(world, pairs[0].bodyA);
             World.remove(world, pairs[0].bodyB);
             score++;
+            rocks++;
+            papers++;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyA.id && elem.body.id != pairs[0].bodyB.id);
             });
@@ -119,6 +130,8 @@ function setup() {
             World.remove(world, pairs[0].bodyA);
             World.remove(world, pairs[0].bodyB);
             score++;
+            papers++;
+            scissors++;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyA.id && elem.body.id != pairs[0].bodyB.id);
             });
@@ -127,6 +140,8 @@ function setup() {
             World.remove(world, pairs[0].bodyA);
             World.remove(world, pairs[0].bodyB);
             score++;
+            scissors++;
+            rocks++;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyA.id && elem.body.id != pairs[0].bodyB.id);
             });
@@ -185,15 +200,31 @@ function draw() {
     text('Score : ' + score, 100, 100);
     // text('Lives : ' + lives, 100, 150);
     text('Lives : ', 100, 150);
-    // imageMode(TOP);
+    textLength = textWidth('Lives : ');
     for(let i=0; i < lives; i++){
-        image(heartImg, 180+i*20, 135, 20, 20)
+        image(heartImg, 100+textLength+i*20, 135, 20, 20)
+    }
+    text('Rocks : ', 100, 400);
+    textLength = textWidth('Rocks : ');
+    for(let i=0; i < rocks; i++){
+        image(rockImg, 100+textLength+i*20, 400-15, 20, 20)
+    }
+    text('Papers : ', 100, 450);
+    textLength = textWidth('Papers : ');
+    for(let i=0; i < papers; i++){
+        image(paperImg, 100+textLength+i*20, 450-15, 20, 20)
+    }
+    text('Scissors : ', 100, 500); 
+    textLength = textWidth('Scissors : ');
+    for(let i=0; i < scissors; i++){
+        image(scissorImg, 100+textLength+i*20, 500-15, 20, 20)
     }
     if (gameOver) {
         text('Game Over ', window.innerWidth / 2 - 75, window.innerHeight / 2);
         textSize(20);
         text('Press r to restart', window.innerWidth / 2 - 80, window.innerHeight / 2 + 35);
     }
+
     noStroke();
     incomingStuff.forEach((elem) => {
         elem.show();
