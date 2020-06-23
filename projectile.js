@@ -6,7 +6,14 @@ class Projectile {
         }
         this.body = Bodies.circle(x, y, r, options);
         this.r = r;
-        this.color = 'red';
+        if (playerLabel == 'rock') {
+            this.color = 'red';
+        } else if (playerLabel == 'scissors') {
+            this.color = 'blue';
+        } else if (playerLabel == 'paper') {
+            this.color = 'green';
+        }
+
         World.add(world, this.body);
         Body.setVelocity(this.body, velocity)
     }
