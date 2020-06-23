@@ -21,17 +21,17 @@ function setup(){
     player = new Player(w/2, h-20, 10, 'player'); // for now just a circle body
     spawner = setInterval(makeProjectile, 3000);
     document.body.addEventListener("keydown", function(e) {
-        console.log(e.key);
-        if(e.key == "ArrowLeft"){
+        console.log(e);
+        if(e.code == "ArrowLeft"){
             movement = 'left';
         }
-        if(e.key == "ArrowRight"){
+        if(e.code == "ArrowRight"){
             movement = 'right';
         }
     });
     document.body.addEventListener("keyup", function(e) {
         console.log(e.key);
-        if(e.key == "ArrowLeft" || e.key == 'ArrowRight'){
+        if(e.code == "ArrowLeft" || e.code == 'ArrowRight'){
             movement = 'none';
         }
     });
@@ -46,6 +46,10 @@ function setup(){
             Body.setVelocity(player.body, {x:0, y:0})
         }
     });
+    Events.on(engine, 'collisionStart', function(event){
+        // check if both labels are rock paper scissor
+        // also add some sensor at end to check for life lost
+    });
 }
 
 function draw(){
@@ -57,6 +61,6 @@ function draw(){
 
 function makeProjectile(){
     let pos = {x: random(10, window.innerWidth-10), y:20};
-    proj = new Projectile(pos.x, pos.y, 10, random(bulletLabel));
+    proj = new Projectile(pos.x, pos.y, 10, random(bulletLabel), {x: 0, y: 2});
     incomingStuff.push(proj);
 }
