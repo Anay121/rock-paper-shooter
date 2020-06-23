@@ -12,6 +12,7 @@ let movement = 'none';
 let shoot = 'none';
 let lives = 5;
 let score = 0;
+let gameOver = 0;
 
 function preload() {
     rockImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/newRock.png')
@@ -40,20 +41,28 @@ function setup() {
         makeProjectile(random(400, window.innerWidth - 400), 20, random(bulletLabel), 0, 4, rockImg)
     }, 3000);
     document.body.addEventListener("keydown", function (e) {
-        if (e.code == "ArrowLeft") {
-            movement = 'left';
-        }
-        if (e.code == "ArrowRight") {
-            movement = 'right';
-        }
-        if (e.key == 'q') {
-            makeProjectile(player.body.position.x, player.body.position.y - 25, 'rock', 0, -6);
-        }
-        if (e.key == 'w') {
-            makeProjectile(player.body.position.x, player.body.position.y - 25, 'paper', 0, -6);
-        }
-        if (e.key == 'e') {
-            makeProjectile(player.body.position.x, player.body.position.y - 25, 'scissors', 0, -6);
+        if (!gameOver) {
+            if (e.code == "ArrowLeft") {
+                movement = 'left';
+            }
+            if (e.code == "ArrowRight") {
+                movement = 'right';
+            }
+            if (e.key == 'q') {
+                makeProjectile(player.body.position.x, player.body.position.y - 25, 'rock', 0, -6);
+            }
+            if (e.key == 'w') {
+                makeProjectile(player.body.position.x, player.body.position.y - 25, 'paper', 0, -6);
+            }
+            if (e.key == 'e') {
+                makeProjectile(player.body.position.x, player.body.position.y - 25, 'scissors', 0, -6);
+            }
+        } else {
+            if (e.key == "r") {
+                lives = 5;
+                score = 0;
+                gameOver = 0;
+            }
         }
     });
     document.body.addEventListener("keyup", function (e) {
@@ -160,18 +169,35 @@ function draw() {
     player.show();
     textSize(25);
     text('Score : ' + score, 100, 100);
-    incomingStuff.forEach((elem) => elem.show());
+    text('Lives : ' + lives, 100, 150);
+    if (gameOver) {
+        text('Game Over ', window.innerWidth / 2 - 75, window.innerHeight / 2);
+        textSize(20);
+        text('Press r to restart', window.innerWidth / 2 - 80, window.innerHeight / 2 + 35);
+    }
+    noStroke();
+    incomingStuff.forEach((elem) => {
+        elem.show();
+        if (elem.body.position.y > window.windowHeight) {
+            lives--;
+            if (lives == 0) {
+                gameOver = 1;
+            }
+        }
+    });
     incomingStuff = incomingStuff.filter((elem) => elem.body.position.y < window.windowHeight && elem.body.position.y > -20);
 }
 
 function makeProjectile(x, y, bulletLabel, xs, ys) {
-    let pos = {
-        x: x,
-        y: y
-    };
-    proj = new Projectile(pos.x, pos.y, 40, bulletLabel, {
-        x: xs,
-        y: ys
-    });
-    incomingStuff.push(proj);
+    if (!gameOver) {
+        let pos = {
+            x: x,
+            y: y
+        };
+        proj = new Projectile(pos.x, pos.y, 40, bulletLabel, {
+            x: xs,
+            y: ys
+        });
+        incomingStuff.push(proj);
+    }
 }
