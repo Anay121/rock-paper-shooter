@@ -15,6 +15,13 @@ class Player {
         let angle = this.body.angle;
         push();
         translate(pos.x, pos.y);
+        if (this.body.position.x < 385) {
+            this.body.position.x = 385;
+        }
+        if (this.body.position.x > window.innerWidth - 385) {
+            this.body.position.x = window.innerWidth - 385;
+        }
+
         rotate(angle);
         strokeWeight(1);
         stroke(255);

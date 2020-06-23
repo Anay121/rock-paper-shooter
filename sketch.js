@@ -13,7 +13,7 @@ let shoot = 'none';
 let lives = 5;
 let score = 0;
 let gameOver = 0;
-let time = 1300;
+let time = 1500;
 
 function preload() {
     rockImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/tryRock.png')
@@ -44,7 +44,7 @@ function setup() {
 
     var spawner = function () {
         makeProjectile(random(400, window.innerWidth - 400), 20, random(bulletLabel), 0, 4, rockImg);
-        if (score % 5 == 0) {
+        if (score > 0 && score % 5 == 0) {
             time -= 100;
         }
         setTimeout(spawner, time);
@@ -73,6 +73,7 @@ function setup() {
                 lives = 5;
                 score = 0;
                 gameOver = 0;
+                time = 1500;
             }
         }
     });
@@ -82,6 +83,7 @@ function setup() {
         }
     });
     Events.on(engine, 'beforeUpdate', function () {
+
         if (movement == 'left') {
             Body.setVelocity(player.body, {
                 x: -6,
