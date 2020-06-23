@@ -36,17 +36,17 @@ class Projectile {
         fill(0);
         rect(0, 0, this.r, this.r)
         imageMode(CENTER);
-        if(this.body.label.includes('rock')){
+        if (this.body.label == 'rock') {
             image(rockImg, 0, 0, this.r, this.r);
-        }
-        else if(this.body.label.includes('paper')){
+        } else if (this.body.label == 'paper') {
             image(paperImg, 0, 0, this.r, this.r);
-        }
-        else if(this.body.label.includes('scissors')){
+        } else if (this.body.label == 'scissors') {
             image(scissorImg, 0, 0, this.r, this.r);
+        } else if (this.body.label == 'heart') {
+            image(heartImg, 0, 0, this.r, this.r);
         }
-        
-        
+
+
         // fill(this.color);
         // circle(0, 0, this.r * 2);
         pop();
