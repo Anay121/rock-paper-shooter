@@ -11,7 +11,7 @@ let spawner;
 let movement = 'none';
 let shoot = 'none';
 let lives = 5;
-let score = 0;
+let score = 50;
 let gameOver = 0;
 let time = 1500;
 let rocks = 5;
@@ -41,13 +41,13 @@ function setup() {
         x: 0,
         y: 0
     };
-    player = new Player(w / 2, h - 20, 40, 'player'); // for now just a circle body
+    player = new Player(w / 2, h - 20, 40, 'player'); 
     // spawner = setInterval(() => {
     //     makeProjectile(random(400, window.innerWidth - 400), 20, random(bulletLabel), 0, 4, rockImg)
     // }, 3000);
 
     var spawner = function () {
-        makeProjectile(random(400, window.innerWidth - 400), 20, random(bulletLabel), 0, 4, rockImg);
+        makeProjectile(random(400, window.innerWidth - 400), 20, random(bulletLabel), 0, 4);
         if (score > 0 && score % 5 == 0) {
             time -= 100;
         }
@@ -74,6 +74,9 @@ function setup() {
             if (e.key == 'e' && scissors > 0) {
                 makeProjectile(player.body.position.x, player.body.position.y - 25, 'scissors', 0, -6);
                 scissors--;
+            }
+            if (e.key == 's'){
+                specialPower();
             }
         } else {
             if (e.key == "r") {
@@ -120,8 +123,8 @@ function setup() {
             World.remove(world, pairs[0].bodyA);
             World.remove(world, pairs[0].bodyB);
             score++;
-            rocks++;
-            papers++;
+            rocks = rocks+1 > 8 ? 8 : rocks+1;
+            papers = papers+1 > 8 ? 8 : papers+1;;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyA.id && elem.body.id != pairs[0].bodyB.id);
             });
@@ -130,8 +133,8 @@ function setup() {
             World.remove(world, pairs[0].bodyA);
             World.remove(world, pairs[0].bodyB);
             score++;
-            papers++;
-            scissors++;
+            papers = papers+1 > 8 ? 8 : papers+1;;
+            scissors = scissors+1 > 8 ? 8 : scissors+1;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyA.id && elem.body.id != pairs[0].bodyB.id);
             });
@@ -140,8 +143,8 @@ function setup() {
             World.remove(world, pairs[0].bodyA);
             World.remove(world, pairs[0].bodyB);
             score++;
-            scissors++;
-            rocks++;
+            scissors = scissors+1 > 8 ? 8 : scissors+1;
+            rocks = rocks+1 > 8 ? 8 : rocks+1;
             incomingStuff = incomingStuff.filter((elem) => {
                 return (elem.body.id != pairs[0].bodyA.id && elem.body.id != pairs[0].bodyB.id);
             });
@@ -184,6 +187,14 @@ function setup() {
                 return (elem.body.id != pairs[0].bodyB.id);
             });
         }
+        if (pairs[0].bodyA.label == 'srock' || pairs[0].bodyB.label == 'srock' || pairs[0].bodyA.label == 'spaper' || pairs[0].bodyB.label == 'spaper' || pairs[0].bodyA.label == 'sscissors' || pairs[0].bodyB.label == 'sscissors') {
+            World.remove(world, pairs[0].bodyA);
+            World.remove(world, pairs[0].bodyB);
+            score++;
+            incomingStuff = incomingStuff.filter((elem) => {
+                return (elem.body.id != pairs[0].bodyA.id && elem.body.id != pairs[0].bodyB.id);
+            });
+        }
 
     });
 }
@@ -194,11 +205,11 @@ function draw() {
     stroke(255);
     fill(255);
     line(375, 0, 375, window.innerHeight);
+    textAlign(LEFT)
     line(window.innerWidth - 375, 0, window.innerWidth - 375, window.innerHeight);
     player.show();
     textSize(25);
     text('Score : ' + score, 100, 100);
-    // text('Lives : ' + lives, 100, 150);
     text('Lives : ', 100, 150);
     textLength = textWidth('Lives : ');
     for(let i=0; i < lives; i++){
@@ -220,9 +231,11 @@ function draw() {
         image(scissorImg, 100+textLength+i*20, 500-15, 20, 20)
     }
     if (gameOver) {
-        text('Game Over ', window.innerWidth / 2 - 75, window.innerHeight / 2);
+        // textLength = textWidth('Game Over ');
+        textAlign(CENTER);
+        text('Game Over ', window.innerWidth / 2 , window.innerHeight / 2);
         textSize(20);
-        text('Press r to restart', window.innerWidth / 2 - 80, window.innerHeight / 2 + 35);
+        text('Press r to restart', window.innerWidth / 2, window.innerHeight / 2 + 35);
     }
 
     noStroke();
@@ -251,4 +264,26 @@ function makeProjectile(x, y, bulletLabel, xs, ys) {
         });
         incomingStuff.push(proj);
     }
+}
+
+function specialPower(){
+    let elems = incomingStuff.slice();
+    let playerPos = player.body.position;
+    let specialLabel;
+    console.log('hie');
+    elems.forEach((elem)=>{
+        console.log(elem)
+        let sy = -7;
+        let sx = -11*(playerPos.x - elem.body.position.x)/(playerPos.y - elem.body.position.y)
+        if(elem.body.label == 'rock'){
+            specialLabel = 'spaper'
+        }
+        else if(elem.body.label == 'paper'){
+            specialLabel = 'sscissors'
+        }
+        else if(elem.body.label == 'scissors'){
+            specialLabel = 'srock'
+        }
+        makeProjectile(playerPos.x, playerPos.y, specialLabel, sx, sy);
+    });
 }

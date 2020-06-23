@@ -1,5 +1,5 @@
 class Projectile {
-    constructor(x, y, r, playerLabel, velocity, bodyImg) {
+    constructor(x, y, r, playerLabel, velocity) {
 
         let options = {
             label: playerLabel,
@@ -9,14 +9,13 @@ class Projectile {
         // this.body = Bodies.circle(x, y, r, options);
         this.body = Bodies.rectangle(x, y, r, r, options);
         this.r = r;
-        this.image = bodyImg;
-        if (playerLabel == 'rock') {
-            this.color = 'red';
-        } else if (playerLabel == 'scissors') {
-            this.color = 'blue';
-        } else if (playerLabel == 'paper') {
-            this.color = 'green';
-        }
+        // if (playerLabel == 'rock') {
+        //     this.color = 'red';
+        // } else if (playerLabel == 'scissors') {
+        //     this.color = 'blue';
+        // } else if (playerLabel == 'paper') {
+        //     this.color = 'green';
+        // }
 
         World.add(world, this.body);
         Body.setVelocity(this.body, velocity);
@@ -37,13 +36,13 @@ class Projectile {
         fill(0);
         rect(0, 0, this.r, this.r)
         imageMode(CENTER);
-        if(this.body.label=='rock'){
+        if(this.body.label.includes('rock')){
             image(rockImg, 0, 0, this.r, this.r);
         }
-        else if(this.body.label=='paper'){
+        else if(this.body.label.includes('paper')){
             image(paperImg, 0, 0, this.r, this.r);
         }
-        else if(this.body.label=='scissors'){
+        else if(this.body.label.includes('scissors')){
             image(scissorImg, 0, 0, this.r, this.r);
         }
         
