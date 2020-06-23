@@ -31,11 +31,22 @@ class Projectile {
         push();
         translate(pos.x, pos.y);
         rotate(angle);
-        // rectMode(CENTER);
+        rectMode(CENTER);
         strokeWeight(1);
-        stroke(255);
+        // stroke(255);
+        fill(0);
+        rect(0, 0, this.r, this.r)
         imageMode(CENTER);
-        image(rockImg, 0, 0, this.r, this.r);
+        if(this.body.label=='rock'){
+            image(rockImg, 0, 0, this.r, this.r);
+        }
+        else if(this.body.label=='paper'){
+            image(paperImg, 0, 0, this.r, this.r);
+        }
+        else if(this.body.label=='scissors'){
+            image(scissorImg, 0, 0, this.r, this.r);
+        }
+        
         
         // fill(this.color);
         // circle(0, 0, this.r * 2);
