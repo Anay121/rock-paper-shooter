@@ -11,7 +11,7 @@ let spawner;
 let movement = 'none';
 let shoot = 'none';
 let lives = 5;
-let score = 50;
+let score = 0;
 let gameOver = 0;
 let time = 1500;
 let rocks = 5;
