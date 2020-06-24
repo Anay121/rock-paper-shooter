@@ -1,4 +1,4 @@
-<div style="text-align:center;display:block">
+<p align="center">
   
   <img src="assets/logo.png"/>
   <br>
@@ -7,10 +7,12 @@
   [![made-with](https://img.shields.io/badge/Made%20With-Matter.js-blue)](https://brm.io/matter-js/docs/)
   [![made-with](https://img.shields.io/badge/Made%20With-P5.js-blue)](https://p5js.org/reference/)
   
+  [![download-at](https://img.shields.io/badge/Play%20At-itch.io-red)]()
   
-</div>
+  
+</p>
 
-# rock-paper-shooter
+# Rock Paper Shooter
 A game of rock paper scissors, with a twist!
 
 There's a rebellion on our hands! We need your help in defending the realm.
