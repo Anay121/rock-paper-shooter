@@ -274,7 +274,7 @@ function draw() {
     line(375, 0, 375, window.innerHeight);
     textAlign(LEFT);
     line(window.innerWidth - 375, 0, window.innerWidth - 375, window.innerHeight);
-    image(logoImg, 75, 20, 270, 200)
+    image(logoImg, 65, 40, 270, 150);
     textSize(25);
     text("Score : " + score, 75, 240);
     text("Lives : ", 75, 290);
