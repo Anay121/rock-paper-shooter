@@ -1,6 +1,6 @@
 <p align="center">
   
-  <img src="assets/logo.png"/>
+  <img src="assets/logonew.png"/>
   <br>
   <a><img src="https://img.shields.io/badge/Made%20With-Javascript-orange" alt="made with"/> </a>
   <a href="https://brm.io/matter-js/docs/"> <img src="https://img.shields.io/badge/Made%20With-Matter.js-blue" alt="made with"/> </a>
