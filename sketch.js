@@ -50,8 +50,6 @@ function preload() {
 
 function windowResized() {
     resizeCanvas(window.innerWidth, window.innerHeight);
-    player.body.position.x = window.innerWidth / 2;
-    player.body.position.y = window.innerHeight - 30;
 }
 
 function setup() {
@@ -70,7 +68,7 @@ function setup() {
         x: 0,
         y: 0,
     };
-    player = new Player(window.innerWidth / 2, window.innerHeight - 30, 50, "player");
+    player = new Player(w / 2, h - 20, 50, "player");
     // spawner = setInterval(() => {
     //     makeProjectile(random(400, window.innerWidth - 400), 20, random(bulletLabel), 0, 4, rockImg)
     // }, 3000);
@@ -173,7 +171,7 @@ function setup() {
     });
     Events.on(engine, "collisionStart", function (event) {
         var pairs = event.pairs;
-        console.log("colision between " + pairs[0].bodyA.label + " - " + pairs[0].bodyB.label);
+
         // i shot a rock at paper
         if (pairs[0].bodyA.label == "rock" && pairs[0].bodyB.label == "paper") {
             World.remove(world, pairs[0].bodyA);
@@ -265,13 +263,6 @@ function setup() {
             });
             lives++;
         }
-        if (pairs[0].bodyA.label == "heart" && pairs[0].bodyB.label == "player") {
-            World.remove(world, pairs[0].bodyA);
-            incomingStuff = incomingStuff.filter((elem) => {
-                return elem.body.id != pairs[0].bodyA.id;
-            });
-            lives++;
-        }
     });
 }
 
@@ -283,7 +274,7 @@ function draw() {
     line(375, 0, 375, window.innerHeight);
     textAlign(LEFT);
     line(window.innerWidth - 375, 0, window.innerWidth - 375, window.innerHeight);
-    image(logoImg, 63, 40, 280, 160);
+    image(logoImg, 63, 20, 280, 170)
     textSize(25);
     text("Score : " + score, 75, 240);
     text("Lives : ", 75, 290);
@@ -360,7 +351,7 @@ function draw() {
         elem.show();
         if (
             elem.body.label != "heart" &&
-            elem.body.position.y > window.innerHeight
+            elem.body.position.y > window.windowHeight
         ) {
             lives--;
             if (lives <= 0) {
@@ -375,7 +366,7 @@ function draw() {
     }
     incomingStuff = incomingStuff.filter(
         (elem) =>
-        elem.body.position.y < window.innerHeight && elem.body.position.y > -20
+        elem.body.position.y < window.windowHeight && elem.body.position.y > -20
     );
 }
 
