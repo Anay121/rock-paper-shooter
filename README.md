@@ -2,13 +2,11 @@
   
   <img src="assets/logo.png"/>
   <br>
-  
-  ![made-with](https://img.shields.io/badge/Made%20With-Javascript-orange)
-  [![made-with](https://img.shields.io/badge/Made%20With-Matter.js-blue)](https://brm.io/matter-js/docs/)
-  [![made-with](https://img.shields.io/badge/Made%20With-P5.js-blue)](https://p5js.org/reference/)
-  
-  [![download-at](https://img.shields.io/badge/Play%20At-itch.io-red)]()
-  
+  <a><img src="https://img.shields.io/badge/Made%20With-Javascript-orange" alt="made with"/> </a>
+  <a href="https://brm.io/matter-js/docs/"> <img src="https://img.shields.io/badge/Made%20With-Matter.js-blue" alt="made with"/> </a>
+  <a href="https://p5js.org/reference/"> <img src="https://img.shields.io/badge/Made%20With-P5.js-blue" alt="made with"/> </a>
+  <br>
+  <a href="https://vtg2000.itch.io/rock-paper-shooter"> <img src="https://img.shields.io/badge/Play%20At-itch.io-red" alt="play at"/> </a>
   
 </p>
 
@@ -17,7 +15,10 @@ A game of rock paper scissors, with a twist!
 
 There's a rebellion on our hands! We need your help in defending the realm.
 
-[Play here](https://anay121.github.io/rock-paper-shooter/)
+[Play here](https://vtg2000.itch.io/rock-paper-shooter)
+
+---
+## Screenshots
 
 ---
 # Contributors
