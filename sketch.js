@@ -51,7 +51,7 @@ function preload() {
 function windowResized() {
     resizeCanvas(window.innerWidth, window.innerHeight);
     player.body.position.x = window.innerWidth / 2;
-    player.body.position.y = window.innerHeight - 20;
+    player.body.position.y = window.innerHeight - 30;
 }
 
 function setup() {
@@ -70,7 +70,7 @@ function setup() {
         x: 0,
         y: 0,
     };
-    player = new Player(window.innerWidth / 2, window.innerHeight - 20, 50, "player");
+    player = new Player(window.innerWidth / 2, window.innerHeight - 30, 50, "player");
     // spawner = setInterval(() => {
     //     makeProjectile(random(400, window.innerWidth - 400), 20, random(bulletLabel), 0, 4, rockImg)
     // }, 3000);
