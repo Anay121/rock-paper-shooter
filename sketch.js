@@ -22,14 +22,6 @@ let specialInd = 0;
 let mytimeout;
 
 function preload() {
-<<<<<<< HEAD
-    rockImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/VTGRock.png')
-    paperImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/VTGPaper.png')
-    scissorImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/VTGScissors.png')
-    heartImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/lives.png')
-    playerImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/VTGPlayer.png')
-    logoImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/LogoWhite.png')
-=======
     rockImg = loadImage(
         "https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/VTGRock.png"
     );
@@ -45,7 +37,7 @@ function preload() {
     playerImg = loadImage(
         "https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/VTGPlayer.png"
     );
->>>>>>> cf6ba7d81891be34025ac14ec6edd825306841f6
+    logoImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/logoWhite.png')
 }
 
 // document.addEventListener("visibilitychange", function () {
@@ -282,13 +274,13 @@ function draw() {
     line(375, 0, 375, window.innerHeight);
     textAlign(LEFT);
     line(window.innerWidth - 375, 0, window.innerWidth - 375, window.innerHeight);
-
+    image(logoImg, 75, 20, 270, 200)
     textSize(25);
-    text("Score : " + score, 75, 100);
-    text("Lives : ", 75, 150);
+    text("Score : " + score, 75, 240);
+    text("Lives : ", 75, 290);
     textLength = textWidth("Lives : ");
     for (let i = 0; i < lives; i++) {
-        image(heartImg, 75 + textLength + i * 20, 135, 20, 20);
+        image(heartImg, 75 + textLength + i * 20, 275, 20, 20);
     }
     text("Rocks : ", 75, 400);
     textLength = textWidth("Rocks : ");
