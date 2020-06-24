@@ -15,20 +15,21 @@ class Player {
         let angle = this.body.angle;
         push();
         translate(pos.x, pos.y);
-        if (this.body.position.x < 385) {
-            this.body.position.x = 385;
+        if (this.body.position.x < 400) {
+            this.body.position.x = 395;
         }
         if (this.body.position.x > window.innerWidth - 385) {
-            this.body.position.x = window.innerWidth - 385;
+            this.body.position.x = window.innerWidth - 395;
         }
 
         rotate(angle);
         strokeWeight(1);
         stroke(255);
         rectMode(CENTER);
+        fill(0);
         rect(0, 0, this.r, this.r)
         imageMode(CENTER);
-        image(rockImg, 0, 0, this.r, this.r);
+        image(playerImg, 0, 0, this.r, this.r);
         // circle(0, 0, this.r * 2);
         // console.log(shape);
         // img.mask(shape);

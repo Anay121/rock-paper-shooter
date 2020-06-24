@@ -25,6 +25,7 @@ function preload() {
     paperImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/VTGPaper.png')
     scissorImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/VTGScissors.png')
     heartImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/lives.png')
+    playerImg = loadImage('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Anay121/InfiniteVenues/master/static/VTGPlayer.png')
 }
 
 document.addEventListener('visibilitychange', function () {
@@ -266,14 +267,29 @@ function draw() {
         fill(255);
     }
     if (gameOver) {
-        // textLength = textWidth('Game Over ');
         textAlign(CENTER);
         text('Game Over ', window.innerWidth / 2, window.innerHeight / 2);
         textSize(20);
         text('Press r to restart', window.innerWidth / 2, window.innerHeight / 2 + 35);
     }
-
-
+    textAlign(LEFT);
+    textSize(30);   
+    text('Instructions', window.innerWidth - 260, 100);
+    text('Controls', window.innerWidth - 260, 300);
+    textSize(18);
+    text('Key        Projectile', window.innerWidth - 280, 340);
+    text('q', window.innerWidth - 270, 370);
+    image(rockImg, window.innerWidth - 180, 370 - 15, 20, 20)
+    text('w', window.innerWidth - 270, 400);
+    image(paperImg, window.innerWidth - 180, 400 - 15, 20, 20)
+    text('e', window.innerWidth - 270, 430);
+    image(scissorImg, window.innerWidth - 180, 430 - 15, 20, 20)
+    text('s', window.innerWidth - 270, 460);
+    text('Special', window.innerWidth - 200, 460);
+    textAlign(CENTER);
+    noStroke();
+    fill('orange')
+    text('The pieces are revolting!\nRocks, Papers and Scissors are \ncoming towards us and we need you \nto drive them away.\nWith traditional rock-paper-scissor rules,\nuse the keys to shoot the enemy!', window.innerWidth - 180, 130);
     noStroke();
     player.show();
     incomingStuff.forEach((elem) => {
