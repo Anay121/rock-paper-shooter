@@ -360,7 +360,7 @@ function draw() {
         elem.show();
         if (
             elem.body.label != "heart" &&
-            elem.body.position.y > window.windowHeight
+            elem.body.position.y > window.innerHeight
         ) {
             lives--;
             if (lives <= 0) {
@@ -375,7 +375,7 @@ function draw() {
     }
     incomingStuff = incomingStuff.filter(
         (elem) =>
-        elem.body.position.y < window.windowHeight && elem.body.position.y > -20
+        elem.body.position.y < window.innerHeight && elem.body.position.y > -20
     );
 }
 
