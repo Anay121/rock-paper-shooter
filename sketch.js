@@ -332,7 +332,7 @@ function specialPower() {
         console.log('hie');
         console.log(elem);
         let sy = -7;
-        let sx = -11 * (playerPos.x - elem.body.position.x) / (playerPos.y - elem.body.position.y);
+        let sx = -(7+elem.body.velocity.y) * (playerPos.x - elem.body.position.x) / (playerPos.y - elem.body.position.y);
         if (elem.body.label == 'rock') {
             specialLabel = 'paper';
         } else if (elem.body.label == 'paper') {
