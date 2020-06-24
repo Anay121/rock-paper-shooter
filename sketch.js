@@ -52,7 +52,7 @@ function setup() {
         x: 0,
         y: 0
     };
-    player = new Player(w / 2, h - 20, 40, 'player');
+    player = new Player(w / 2, h - 20, 50, 'player');
     // spawner = setInterval(() => {
     //     makeProjectile(random(400, window.innerWidth - 400), 20, random(bulletLabel), 0, 4, rockImg)
     // }, 3000);
@@ -216,14 +216,6 @@ function setup() {
             });
             lives++;
         }
-        if (pairs[0].bodyA.label == 'srock' || pairs[0].bodyB.label == 'srock' || pairs[0].bodyA.label == 'spaper' || pairs[0].bodyB.label == 'spaper' || pairs[0].bodyA.label == 'sscissors' || pairs[0].bodyB.label == 'sscissors') {
-            World.remove(world, pairs[0].bodyA);
-            World.remove(world, pairs[0].bodyB);
-            score++;
-            incomingStuff = incomingStuff.filter((elem) => {
-                return (elem.body.id != pairs[0].bodyA.id && elem.body.id != pairs[0].bodyB.id);
-            });
-        }
 
     });
 }
@@ -273,11 +265,11 @@ function draw() {
         text('Press r to restart', window.innerWidth / 2, window.innerHeight / 2 + 35);
     }
     textAlign(LEFT);
-    textSize(30);   
+    textSize(30);
     text('Instructions', window.innerWidth - 260, 100);
     text('Controls', window.innerWidth - 260, 300);
     textSize(18);
-    text('Key        Projectile', window.innerWidth - 280, 340);
+    text('Key        Function', window.innerWidth - 280, 340);
     text('q', window.innerWidth - 270, 370);
     image(rockImg, window.innerWidth - 180, 370 - 15, 20, 20)
     text('w', window.innerWidth - 270, 400);
@@ -286,6 +278,15 @@ function draw() {
     image(scissorImg, window.innerWidth - 180, 430 - 15, 20, 20)
     text('s', window.innerWidth - 270, 460);
     text('Special', window.innerWidth - 200, 460);
+    text('<-', window.innerWidth - 270, 490);
+    text('Move left', window.innerWidth - 200, 490);
+    text('->', window.innerWidth - 270, 520);
+    text('Move right', window.innerWidth - 200, 520);
+
+    text('Special - Requires 5 of ', window.innerWidth - 340, 560);
+    image(rockImg, window.innerWidth - 130, 560 - 15, 20, 20);
+    image(paperImg, window.innerWidth - 100, 560 - 15, 20, 20);
+    image(scissorImg, window.innerWidth - 70, 560 - 15, 20, 20);
     textAlign(CENTER);
     noStroke();
     fill('orange')
@@ -329,17 +330,19 @@ function specialPower() {
     let specialLabel;
 
     elems.forEach((elem) => {
-        console.log('hie');
-        console.log(elem);
         let sy = -7;
-        let sx = -(7+elem.body.velocity.y) * (playerPos.x - elem.body.position.x) / (playerPos.y - elem.body.position.y);
+        let sx = -(7 + elem.body.velocity.y) * (playerPos.x - elem.body.position.x) / (playerPos.y - elem.body.position.y);
         if (elem.body.label == 'rock') {
             specialLabel = 'paper';
         } else if (elem.body.label == 'paper') {
             specialLabel = 'scissors';
         } else if (elem.body.label == 'scissors') {
             specialLabel = 'rock';
+        } else if (elem.body.label == 'heart') {
+            specialLabel = '';
         }
-        makeProjectile(playerPos.x, playerPos.y, specialLabel, sx, sy);
+        if (specialLabel != '') {
+            makeProjectile(playerPos.x, playerPos.y, specialLabel, sx, sy);
+        }
     });
 }
