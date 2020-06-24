@@ -1,12 +1,12 @@
 <p align="center">
   
-  <img src="assets/logo.png"/>
+  <img src="assets/logonew.png"/>
   <br>
-  <a><img src="https://img.shields.io/badge/Made%20With-Javascript-orange" alt="made with"/> </a>
-  <a href="https://brm.io/matter-js/docs/"> <img src="https://img.shields.io/badge/Made%20With-Matter.js-blue" alt="made with"/> </a>
-  <a href="https://p5js.org/reference/"> <img src="https://img.shields.io/badge/Made%20With-P5.js-blue" alt="made with"/> </a>
+  <a><img src="https://img.shields.io/badge/Made%20With-Javascript-orange?style=for-the-badge" alt="made with"/> </a>
+  <a href="https://brm.io/matter-js/docs/"> <img src="https://img.shields.io/badge/Made%20With-Matter.js-blue?style=for-the-badge" alt="made with"/> </a>
+  <a href="https://p5js.org/reference/"> <img src="https://img.shields.io/badge/Made%20With-P5.js-blue?style=for-the-badge" alt="made with"/> </a>
   <br>
-  <a href="https://vtg2000.itch.io/rock-paper-shooter"> <img src="https://img.shields.io/badge/Play%20At-itch.io-red" alt="play at"/> </a>
+  <a href="https://vtg2000.itch.io/rock-paper-shooter"> <img src="https://img.shields.io/badge/Play%20At-itch.io-red?style=for-the-badge" alt="play at"/> </a>
   
 </p>
 
@@ -19,6 +19,9 @@ There's a rebellion on our hands! We need your help in defending the realm.
 
 ---
 ## Screenshots
+
+<img src="assets/ss1.PNG" width=90%>
+<img src="assets/ss2.PNG" width=90%>
 
 ---
 # Contributors
