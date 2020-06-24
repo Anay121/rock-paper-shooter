@@ -22,6 +22,7 @@ There's a rebellion on our hands! We need your help in defending the realm.
 
 <img src="assets/ss1.PNG" width=90%>
 <img src="assets/ss2.PNG" width=90%>
+<img src="assets/displayGIF.gif" width=90%>
 
 ---
 # Contributors
